@@ -19,6 +19,13 @@ class BooksController < ApplicationController
         a.favorited_users.includes(:favorites).where(created_at: from...to).size
       }
     @book = Book.new
+    if params[:tag_ids]
+      @books = []
+      params[:tag_ids].each do |key, value|
+        @books += Tag.find_by(name: key).books if value == "1"
+      end
+      @books.uniq!
+    end
   end
 
   def create
@@ -60,7 +67,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, tag_ids: [])
   end
 
   def ensure_correct_user

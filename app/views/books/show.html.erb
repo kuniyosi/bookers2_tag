@@ -32,6 +32,9 @@
           <td>
             閲覧数: <%= @book_detail.view_counts.count %>
           </td>
+          <% @book.tags.each do |tag| %>
+            <td><%= tag.name %></td>
+          <% end %>
         </tr>
       </table>
 

@@ -21,6 +21,9 @@
         </td>
         <td><%= render "book_comments/counter", book: book %></td>
         <td>閲覧数: <%= book.view_counts.count %></td>
+        <% book.tags.each do |tag| %>
+            <td><%= tag.name %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

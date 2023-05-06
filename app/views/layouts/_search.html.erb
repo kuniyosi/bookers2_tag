@@ -7,4 +7,12 @@
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
   </div>
+  <div>
+    <%= form_tag({controller:"books",action:"index"}, method: :get) do %>
+      <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+      <% end %>
+      <%= submit_tag '検索' %>
+    <% end %>
+  </div>
 <% end %>
